@@ -19,27 +19,16 @@ public class Car {
     @Column(name = "license_plate")
     private String licensePlate;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "car_id", nullable = false)
-    private Car car;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User owner;
 
-    public Car getCar() {
-        return car;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    @OneToMany(mappedBy = "car", orphanRemoval = true)
-    private List<Car> cars = new ArrayList<>();
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getParkingSpot() {
@@ -65,5 +54,11 @@ public class Car {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Object getparkingSpot() {
+        return parkingSpot;
+    }
+
+
 
 }
