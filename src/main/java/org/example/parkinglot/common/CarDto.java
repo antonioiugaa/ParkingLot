@@ -23,12 +23,15 @@ public class CarDto {
     }
 
     public void setId(Long id) {
+        this.id = id;
     }
 
     public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
-    public void setparkingSpot(Object o) {
+    public void setparkingSpot(String o) {
+        this.parkingSpot = (String) o;
     }
 
     public String getParkingSpot() {

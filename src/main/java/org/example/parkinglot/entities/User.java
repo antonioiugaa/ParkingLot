@@ -1,6 +1,12 @@
 package org.example.parkinglot.entities;
 
+import jakarta.el.CompositeELResolver;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static jakarta.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "users")
@@ -50,6 +56,17 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @OneToMany(mappedBy = "owner", cascade = ALL)
+    private Collection<Car> cars = new ArrayList<>();
+
+    public Collection<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Collection<Car> cars) {
+        this.cars = cars;
     }
 
 }
