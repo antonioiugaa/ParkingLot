@@ -3,12 +3,17 @@ import java.io.*;
 import java.util.List;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import org.example.parkinglot.common.CarDto;
 import org.example.parkinglot.common.UserDto;
 import org.example.parkinglot.ejb.CarsBean;
 import org.example.parkinglot.ejb.UsersBean;
+
+
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"WRITE_CARS"}))
 
 @WebServlet(name = "EditCar", value = "/EditCar")
 public class EditCar extends HttpServlet {
