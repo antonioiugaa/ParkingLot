@@ -9,6 +9,7 @@ import org.example.parkinglot.entities.Car;
 import org.example.parkinglot.entities.User;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -94,6 +95,18 @@ public void createCar(String licensePlate, String parkingSpot, Long userId) {
                 car.getOwner().getUsername()
         );
     }
+
+
+    public void deleteCarsByIds(Collection<Long> carIds){
+        LOG.info("deleteCarsByIds");
+
+        for(Long carId : carIds){
+            Car car = entityManager.find(Car.class, carId);
+            entityManager.remove(car);
+        }
+    }
 }
+
+
 
 

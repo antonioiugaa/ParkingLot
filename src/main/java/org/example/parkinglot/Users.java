@@ -20,13 +20,10 @@ public class Users extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 1. Chiedi i dati al Bean
         List<UserDto> users = usersBean.findAllUsers();
 
-        // 2. Mettili nella "busta" per la JSP
         request.setAttribute("users", users);
 
-        // 3. Spedisci tutto alla pagina visuale
         request.getRequestDispatcher("/WEB-INF/pages/users.jsp").forward(request, response);
     }
 }
