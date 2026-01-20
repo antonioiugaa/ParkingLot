@@ -4,10 +4,11 @@
 
 <t:pageTemplate pageTitle="Edit Car">
 
-  <h1>Add Car</h1>
+  <h1>Edit Car</h1>
 
   <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/EditCar">
-    <input type="hidden" name="car_id" value="${car_id}">
+
+    <input type="hidden" name="car_id" value="${car.id}">
 
     <div class="row g-3">
 
@@ -42,7 +43,6 @@
     </div>
 
     <hr class="my-4">
-    <input type="hidden" name="car_id" value="${car_id}" />
 
     <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
 
