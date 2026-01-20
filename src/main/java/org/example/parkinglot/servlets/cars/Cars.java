@@ -35,8 +35,6 @@ public class Cars extends HttpServlet {
         List<CarDto> cars = carsBean.findAllCars();
         request.setAttribute("cars", cars);
 
-        // --- MODIFICA QUI (Task 4) ---
-        // Calcoliamo i posti liberi (10 totali - auto presenti)
         int numberOfFreeParkingSpots = 10 - cars.size();
         request.setAttribute("numberOfFreeParkingSpots", numberOfFreeParkingSpots);
         // -----------------------------
