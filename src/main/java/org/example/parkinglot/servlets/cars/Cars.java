@@ -1,4 +1,4 @@
-package org.example.parkinglot;
+package org.example.parkinglot.servlets.cars;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
@@ -36,7 +36,7 @@ public class Cars extends HttpServlet {
         request.setAttribute("cars", cars);
 
 
-        request.getRequestDispatcher("/WEB-INF/pages/cars.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/cars/cars.jsp").forward(request, response);
     }
 
     @Override
