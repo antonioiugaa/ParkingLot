@@ -35,8 +35,6 @@ public class Cars extends HttpServlet {
         List<CarDto> cars = carsBean.findAllCars();
         request.setAttribute("cars", cars);
 
-        // Nota: Assicurati di aggiungere qui il conteggio dei posti liberi
-        // se la tua JSP usa ${numberOfFreeParkingSpots}
 
         request.getRequestDispatcher("/WEB-INF/pages/cars.jsp").forward(request, response);
     }

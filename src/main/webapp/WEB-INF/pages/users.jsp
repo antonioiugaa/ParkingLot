@@ -2,9 +2,15 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+
 <t:pageTemplate pageTitle="Users">
 
   <h1>Users</h1>
+
+
+  <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+    <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser" role="button">Add User</a>
+  </c:if>
 
   <div class="table-responsive">
     <table class="table table-striped table-hover">
