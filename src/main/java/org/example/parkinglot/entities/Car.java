@@ -1,5 +1,5 @@
 package org.example.parkinglot.entities;
-
+import org.example.parkinglot.entities.CarPhoto;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -57,6 +57,18 @@ public class Car {
 
     public Object getparkingSpot() {
         return parkingSpot;
+    }
+
+
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private CarPhoto photo;
+
+    public CarPhoto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(CarPhoto photo) {
+        this.photo = photo;
     }
 
 
