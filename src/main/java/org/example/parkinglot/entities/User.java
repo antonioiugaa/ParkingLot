@@ -1,7 +1,8 @@
 package org.example.parkinglot.entities;
 
-import jakarta.el.CompositeELResolver;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,35 +12,34 @@ import static jakarta.persistence.CascadeType.ALL;
 @Entity
 @Table(name = "users")
 public class User {
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "username")
-    private String username;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public String getPassword() {
-        return password;
+    @Size(min = 3, max = 100, message = "Username must be between 3 and 100 characters")
+    @Column(name = "username", unique = true, nullable = false, length = 100)
+    private String username;
+
+    @Email(message = "Email should be valid")
+    @Column(name = "email", unique = true, nullable = false, length = 100)
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @OneToMany(mappedBy = "owner", cascade = ALL)
+    private Collection<Car> cars = new ArrayList<>();
+
+    // --- GETTERS E SETTERS ---
+
+    public Long getId() {
+        return id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -50,16 +50,21 @@ public class User {
         this.username = username;
     }
 
-    public Long getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @OneToMany(mappedBy = "owner", cascade = ALL)
-    private Collection<Car> cars = new ArrayList<>();
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Collection<Car> getCars() {
         return cars;
@@ -68,5 +73,4 @@ public class User {
     public void setCars(Collection<Car> cars) {
         this.cars = cars;
     }
-
 }

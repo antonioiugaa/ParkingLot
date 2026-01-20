@@ -9,14 +9,19 @@
 
     <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
       <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser" role="button">Add User</a>
+    </c:if>
+
+    <c:if test="${pageContext.request.isUserInRole('INVOICING')}">
       <button class="btn btn-secondary btn-lg" type="submit">Invoice</button>
     </c:if>
 
-    <table class="table table-striped">
+    <table class="table table-striped mt-3">
       <thead>
       <tr>
-        <th>Select</th> <th>Username</th>
+        <th>Select</th>
+        <th>Username</th>
         <th>Email</th>
+        <th>Edit</th>
       </tr>
       </thead>
       <tbody>
@@ -30,11 +35,19 @@
           </td>
           <td>${user.username}</td>
           <td>${user.email}</td>
+
+          <td>
+            <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+              <a class="btn btn-secondary btn-sm" href="${pageContext.request.contextPath}/EditUser?id=${user.id}">Edit User</a>
+            </c:if>
+          </td>
+
         </tr>
       </c:forEach>
       </tbody>
     </table>
   </form>
+
   <c:if test="${not empty invoices}">
     <hr/>
     <h2>Invoices</h2>

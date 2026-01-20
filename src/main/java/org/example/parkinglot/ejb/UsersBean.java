@@ -64,4 +64,23 @@ public class UsersBean {
 
         return usernames;
     }
+
+    public UserDto findById(Long id) {
+        User user = entityManager.find(User.class, id);
+        return new UserDto(user.getId(), user.getUsername(), user.getEmail());
+    }
+
+
+    public void updateUser(Long id, String username, String email, String password) {
+        User user = entityManager.find(User.class, id);
+        user.setUsername(username);
+        user.setEmail(email);
+
+        if (password != null && !password.isEmpty()) {
+            user.setPassword(passwordBean.convertToSha256(password));
+        }
+    }
+
+
+
 }
